@@ -1,0 +1,36 @@
+{
+  "name": "uuid-v4-wasm",
+  "version": "0.1.0",
+  "description": "An uuid(v4) generator with WebAssembly.",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "cargo +nightly build --release --target wasm32-unknown-unknown && wasm-bindgen target/wasm32-unknown-unknown/release/uuid_v4_wasm.wasm --out-dir lib",
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmtmt2209/uuid-v4-wasm.git"
+  },
+  "author": "tmtmtoo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tmtmt2209/uuid-v4-wasm/issues"
+  },
+  "homepage": "https://github.com/tmtmt2209/uuid-v4-wasm#readme",
+  "devDependencies": {
+    "@types/jasmine": "^2.8.8",
+    "eslint": "^5.6.0",
+    "jasmine-core": "^3.2.1",
+    "jasmine-spec-reporter": "^4.2.1",
+    "karma": "^2.0.5",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.2",
+    "karma-webpack": "^3.0.5",
+    "ts-loader": "^4.5.0",
+    "typescript": "^3.0.3",
+    "typescript-eslint-parser": "^17.0.1",
+    "webpack": "^4.19.1"
+  }
+}
