@@ -49,8 +49,8 @@ const UUID_V4_FORMAT: [UuidElements; 36] = [
 
 const ERROR_MAKE_CHAR: &str = "Error in making char";
 
-fn f64_to_16bytes_le(seed: f64) -> [u8; 16] {
-    let bytes = seed.to_bits();
+fn make_bytes(value: f64) -> [u8; 16] {
+    let bytes = value.to_bits();
 
     let b1: u8 = ((bytes >> 56) & 0xff) as u8;
     let b2: u8 = ((bytes >> 48) & 0xff) as u8;
@@ -61,11 +61,11 @@ fn f64_to_16bytes_le(seed: f64) -> [u8; 16] {
     let b7: u8 = ((bytes >> 8) & 0xff) as u8;
     let b8: u8 = (bytes & 0xff) as u8;
 
-    [b8, b7, b6, b5, b4, b3, b2, b1, 0, 0, 0, 0, 0, 0, 0, 0]
+    [b8, b7, b6, b5, b4, b3, b2, b1, b8, b7, b6, b5, b4, b3, b2, b1]
 }
 
 pub fn gen_uuid_with_xorshift(seed: f64) -> String {
-    let bytes = f64_to_16bytes_le(seed);
+    let bytes = make_bytes(seed);
     let mut rng = XorShiftRng::from_seed(bytes);
 
     UUID_V4_FORMAT.into_iter()
