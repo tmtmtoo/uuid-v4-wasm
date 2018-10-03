@@ -1,6 +1,6 @@
 {
   "name": "uuid-v4-wasm",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An uuid(v4) generator with WebAssembly.",
   "main": "./lib/uuid_v4_wasm",
   "directories": {
