@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "cargo +nightly build --release --target wasm32-unknown-unknown && wasm-bindgen target/wasm32-unknown-unknown/release/uuid_v4_wasm.wasm --out-dir lib",
+    "build": "./build.sh",
     "test": "karma start"
   },
   "repository": {
@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/jasmine": "^2.8.8",
     "eslint": "^5.6.0",
+    "flowgen": "^1.2.3",
     "jasmine-core": "^3.2.1",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^2.0.5",
