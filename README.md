@@ -15,3 +15,12 @@ import('uuid-v4-wasm')
     .then(wasm => wasm.uuid())
     .then(uuid => console.log(uuid))
 ```
+
+--- 
+
+# Build Requirement
+- osx
+- rust nightly toolchain
+    - wasm32-unknown-unknown
+- wasm-bindgen-cli
+- node.js
