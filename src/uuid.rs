@@ -61,12 +61,15 @@ fn make_bytes(value: f64) -> [u8; 16] {
     let b7: u8 = ((bytes >> 8) & 0xff) as u8;
     let b8: u8 = (bytes & 0xff) as u8;
 
-    [b8, b7, b6, b5, b4, b3, b2, b1, b8, b7, b6, b5, b4, b3, b2, b1]
+    [b8, b7, b6, b5, b4, b3, b2, b1, b1, b2, b3, b4, b5, b6, b7, b8]
 }
 
 pub fn gen_uuid_with_xorshift(seed: f64) -> String {
     let bytes = make_bytes(seed);
     let mut rng = XorShiftRng::from_seed(bytes);
+    
+    // prevent duplication
+    rng.gen_range(0., 1.);
 
     UUID_V4_FORMAT.into_iter()
         .map(|n| match n {
@@ -90,7 +93,7 @@ mod tests {
 
     #[test]
     fn test_uuid() {
-        let uuid = ::gen_uuid_with_xorshift(0.);
+        let uuid = ::gen_uuid_with_xorshift(0.1);
         let re =
             Regex::new(r"^[0-9:A-z]{8}-[0-9:A-z]{4}-4[0-9:A-z]{3}-[0-9:A-z]{4}-[0-9:A-z]{12}$")
                 .unwrap();
