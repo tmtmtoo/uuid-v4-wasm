@@ -1,7 +1,7 @@
 # `uuid-v4-wasm`
 An uuid(v4) generator library with WebAssembly.
 
-# Requirement
+# Requirements
 - webpack >4
 
 # Install
@@ -18,7 +18,7 @@ import('uuid-v4-wasm')
 
 --- 
 
-# Build Requirement
+# Build Requirements
 - osx
 - rust nightly toolchain
     - wasm32-unknown-unknown
