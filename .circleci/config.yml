@@ -1,0 +1,13 @@
+version: 2
+
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: jibbow/rust-wasm32-unknown-unknown
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: echo "test"
