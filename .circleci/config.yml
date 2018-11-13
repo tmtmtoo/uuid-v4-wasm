@@ -11,9 +11,6 @@ jobs:
     <<: *defaults
     steps:
       - run:
-          name: Install node.js
-          command: curl -sL https://deb.nodesource.com/setup_10.x | bash - && apt-get install -y nodejs
-      - run:
           name: Install wasm32-unknown-unknown toolchain
           command: rustup update && rustup install nightly && rustup default nightly && rustup target add wasm32-unknown-unknown --toolchain nightly
       - run:
