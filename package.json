@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "./build.js",
-    "test": "karma start"
+    "test": "karma start --single-run"
   },
   "repository": {
     "type": "git",

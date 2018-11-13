@@ -3,11 +3,24 @@ version: 2
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: jibbow/rust-wasm32-unknown-unknown
+    - image: tmtmt/rust-wasm32-unknown-unknown:latest
 
 jobs:
   build:
     <<: *defaults
     steps:
       - checkout
-      - run: echo "test"
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Build
+          command: npm run build
+      - run:
+          name: Test
+          command: npm run test
