@@ -9,7 +9,13 @@ module.exports = config =>
     preprocessors: {
       [files]: ['webpack']
     },
-    browsers: ['ChromeHeadless'],
+    browsers: ['ChromeHeadlessNoSandbox'],
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
     webpack: {
       mode: 'development',
       module: {
