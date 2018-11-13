@@ -28,8 +28,6 @@ const injectFlowAnnotation = packageName =>
 
 const hyphen2Underscore = str => str.replace(/-/g, '_')
 
-const printError = e => console.log(`Failed to build:\n${e}`)
-
 /**
  * Main
  */
@@ -39,4 +37,3 @@ Promise.resolve(hyphen2Underscore(packageJson.name))
             .then(() => flowgen(packageName))
             .then(() => injectFlowAnnotation(packageName))
     )
-.catch(e => printError(e))
