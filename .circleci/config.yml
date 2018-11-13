@@ -3,12 +3,21 @@ version: 2
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: jibbow/rust-wasm32-unknown-unknown:latest
+    - image: circleci/rust
 
 jobs:
   build:
     <<: *defaults
     steps:
+      - run:
+          name: Install node.js
+          command: curl -sL https://deb.nodesource.com/setup_10.x | bash - && apt-get install -y nodejs && rm -rf /var/lib/apt/lists/*
+      - run:
+          name: Install wasm32-unknown-unknown toolchain
+          command: rustup update && rustup install nightly && rustup default nightly && rustup target add wasm32-unknown-unknown --toolchain nightly
+      - run:
+          name: Install wasm-bindgen
+          command: cargo +nightly install wasm-bindgen-cli
       - checkout
       - restore_cache:
           keys:
