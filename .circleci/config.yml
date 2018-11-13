@@ -3,19 +3,12 @@ version: 2
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: circleci/node:8.12
-    - image: circleci/rust
+    - image: tmtmt/rust-wasm32-unknown-unknown:latest
 
 jobs:
   build:
     <<: *defaults
     steps:
-      - run:
-          name: Install wasm32-unknown-unknown toolchain
-          command: rustup update && rustup install nightly && rustup default nightly && rustup target add wasm32-unknown-unknown --toolchain nightly
-      - run:
-          name: Install wasm-bindgen
-          command: cargo +nightly install wasm-bindgen-cli
       - checkout
       - restore_cache:
           keys:
