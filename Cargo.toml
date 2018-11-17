@@ -1,6 +1,6 @@
 [package]
 name = "uuid-v4-wasm"
-version = "0.3.0"
+version = "0.4.0"
 authors = ["tmtmt2209 <tmtmt2209@gmail.com>"]
 
 [lib]
