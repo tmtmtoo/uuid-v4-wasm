@@ -1,14 +1,14 @@
 {
   "name": "uuid-v4-wasm",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "An uuid(v4) generator with WebAssembly.",
   "main": "./lib/uuid_v4_wasm",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "build": "./build.sh",
-    "test": "karma start"
+    "build": "./build.js",
+    "test": "karma start --single-run"
   },
   "repository": {
     "type": "git",
