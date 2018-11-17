@@ -15,6 +15,7 @@ const packageJson = require('./package.json')
 const build = packageName =>
     exec(`
         cargo +nightly build --release --target wasm32-unknown-unknown && \
+        mkdir lib && \
         wasm-bindgen target/wasm32-unknown-unknown/release/${packageName}.wasm --out-dir lib
     `)
 
