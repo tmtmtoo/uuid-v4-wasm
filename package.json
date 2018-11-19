@@ -1,7 +1,13 @@
 {
   "name": "uuid-v4-wasm",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "An uuid(v4) generator with WebAssembly.",
+  "keywords": [
+    "rust",
+    "wasm-bindgen",
+    "uuid",
+    "WebAssembly"
+  ],
   "main": "./lib/uuid_v4_wasm",
   "directories": {
     "lib": "lib"
@@ -12,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tmtmt2209/uuid-v4-wasm.git"
+    "url": "git+https://github.com/tmtmtoo/uuid-v4-wasm.git"
   },
   "author": "tmtmtoo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tmtmt2209/uuid-v4-wasm/issues"
+    "url": "https://github.com/tmtmtoo/uuid-v4-wasm/issues"
   },
-  "homepage": "https://github.com/tmtmt2209/uuid-v4-wasm#readme",
+  "homepage": "https://github.com/tmtmtoo/uuid-v4-wasm#readme",
   "devDependencies": {
     "@types/jasmine": "^2.8.8",
     "eslint": "^5.6.0",
