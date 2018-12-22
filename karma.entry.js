@@ -1,2 +1,2 @@
-const testsContext = require.context('./test', true, /\.spec\.ts$/)
+const testsContext = require.context('./test/browser', true, /\.spec\.ts$/)
 testsContext.keys().forEach(testsContext)
