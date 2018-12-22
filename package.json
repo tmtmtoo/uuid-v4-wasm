@@ -8,7 +8,7 @@
     "uuid",
     "WebAssembly"
   ],
-  "main": "./node/uuid_v4_wasm",
+  "main": "./nodejs/uuid_v4_wasm",
   "browser": "./browser/uuid_v4_wasm",
   "scripts": {
     "build": "./build.js",
