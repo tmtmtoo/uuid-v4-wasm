@@ -12,29 +12,29 @@ const exec = promisify(require('child_process').exec)
 
 const packageJson = require('./package.json')
 
-const build = packageName =>
+const build = (packageName, dir) =>
     exec(`
         cargo +nightly build --release --target wasm32-unknown-unknown && \
-        mkdir lib && \
-        wasm-bindgen target/wasm32-unknown-unknown/release/${packageName}.wasm --out-dir lib
+        mkdir ${dir} && \
+        wasm-bindgen --${dir} target/wasm32-unknown-unknown/release/${packageName}.wasm --out-dir ${dir}
     `)
 
-const flowgen = packageName =>
-    exec(`./node_modules/.bin/flowgen ./lib/${packageName}.d.ts -o ./lib/${packageName}.js.flow`)
+const flowgen = (packageName, dir) =>
+    exec(`./node_modules/.bin/flowgen ./${dir}/${packageName}.d.ts -o ./${dir}/${packageName}.js.flow`)
 
-const injectFlowAnnotation = packageName =>
-    readFile(`./lib/${packageName}.js.flow`)
+const injectFlowAnnotation = (packageName, dir) =>
+    readFile(`./${dir}/${packageName}.js.flow`)
         .then(data => `// @flow \n\n${data.toString()}`)
-        .then(data => writeFile(`./lib/${packageName}.js.flow`, data))
+        .then(data => writeFile(`./${dir}/${packageName}.js.flow`, data))
 
 const hyphen2Underscore = str => str.replace(/-/g, '_')
 
-/**
- * Main
- */
-Promise.resolve(hyphen2Underscore(packageJson.name))
-    .then(packageName =>
-        build(packageName)
-            .then(() => flowgen(packageName))
-            .then(() => injectFlowAnnotation(packageName))
-    )
+const packageName = hyphen2Underscore(packageJson.name)
+
+build(packageName, 'browser')
+    .then(() => flowgen(packageName, 'browser'))
+    .then(() => injectFlowAnnotation(packageName, 'browser'))
+
+build(packageName, 'nodejs')
+    .then(() => flowgen(packageName, 'nodejs'))
+    .then(() => injectFlowAnnotation(packageName, 'nodejs'))
