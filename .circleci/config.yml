@@ -29,7 +29,8 @@ jobs:
           paths:
             - package.json
             - README.md
-            - lib
+            - browser
+            - nodejs
             - LICENSE
 
   deploy:

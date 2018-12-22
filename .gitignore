@@ -3,5 +3,5 @@
 Cargo.lock
 .node-version
 node_modules/**
-node
+nodejs
 browser

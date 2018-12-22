@@ -12,12 +12,11 @@ const exec = promisify(require('child_process').exec)
 
 const packageJson = require('./package.json')
 
-const build = packageName =>
+const build = (packageName, dir) =>
     exec(`
         cargo +nightly build --release --target wasm32-unknown-unknown && \
-        mkdir node browser && \
-        wasm-bindgen --browser target/wasm32-unknown-unknown/release/${packageName}.wasm --out-dir browser && \
-        wasm-bindgen --nodejs target/wasm32-unknown-unknown/release/${packageName}.wasm --out-dir node
+        mkdir ${dir} && \
+        wasm-bindgen --${dir} target/wasm32-unknown-unknown/release/${packageName}.wasm --out-dir ${dir}
     `)
 
 const flowgen = (packageName, dir) =>
@@ -30,14 +29,12 @@ const injectFlowAnnotation = (packageName, dir) =>
 
 const hyphen2Underscore = str => str.replace(/-/g, '_')
 
-/**
- * Main
- */
-Promise.resolve(hyphen2Underscore(packageJson.name))
-    .then(packageName =>
-        build(packageName)
-            .then(() => flowgen(packageName, 'browser'))
-            .then(() => injectFlowAnnotation(packageName, 'browser'))
-            .then(() => flowgen(packageName, 'node'))
-            .then(() => injectFlowAnnotation(packageName, 'node'))
-    )
+const packageName = hyphen2Underscore(packageJson.name)
+
+build(packageName, 'browser')
+    .then(() => flowgen(packageName, 'browser'))
+    .then(() => injectFlowAnnotation(packageName, 'browser'))
+
+build(packageName, 'nodejs')
+    .then(() => flowgen(packageName, 'nodejs'))
+    .then(() => injectFlowAnnotation(packageName, 'nodejs'))
