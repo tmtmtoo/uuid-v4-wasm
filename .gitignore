@@ -3,4 +3,5 @@
 Cargo.lock
 .node-version
 node_modules/**
-lib
+node
+browser

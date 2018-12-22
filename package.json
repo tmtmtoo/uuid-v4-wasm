@@ -8,10 +8,8 @@
     "uuid",
     "WebAssembly"
   ],
-  "main": "./lib/uuid_v4_wasm",
-  "directories": {
-    "lib": "lib"
-  },
+  "main": "./node/uuid_v4_wasm",
+  "browser": "./browser/uuid_v4_wasm",
   "scripts": {
     "build": "./build.js",
     "test": "karma start --single-run"
