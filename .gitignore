@@ -4,4 +4,4 @@ Cargo.lock
 .node-version
 node_modules/**
 nodejs
-browser
+/browser
